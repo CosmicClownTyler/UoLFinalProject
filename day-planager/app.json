@@ -28,6 +28,12 @@
                 "projectId": "509432cf-078a-407d-8b55-db1efa8d0448"
             }
         },
-        "owner": "cosmicclowntyler"
+        "owner": "cosmicclowntyler",
+        "runtimeVersion": {
+            "policy": "appVersion"
+        },
+        "updates": {
+            "url": "https://u.expo.dev/509432cf-078a-407d-8b55-db1efa8d0448"
+        }
     }
 }
