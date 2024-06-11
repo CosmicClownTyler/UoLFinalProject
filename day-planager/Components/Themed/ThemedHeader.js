@@ -4,7 +4,11 @@ import { Header } from '../Core/Header';
 
 export function ThemedHeader(props) {
     // Deconstruct props
-    const { title, left, right, onLeft, onRight, } = props;
+    const {
+        title,
+        leftText, leftImage, onLeft,
+        rightText, rightImage, onRight,
+    } = props;
 
     // Theme values from the store
     const settings = useSelector(state => state.settings);
@@ -21,9 +25,13 @@ export function ThemedHeader(props) {
                 borderBottomWidth: 1,
                 borderBottomColor: theme.colors.borders,
             }}
-            left={left}
-            right={right}
+            leftText={leftText}
+            leftImage={leftImage}
+            
             onLeft={onLeft}
+            rightText={rightText}
+            rightImage={rightImage}
+            
             onRight={onRight}
         />
     );
