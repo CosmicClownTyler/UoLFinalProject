@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { useColorScheme, StatusBar, SafeAreaView, Text } from 'react-native';
+import { useColorScheme, StatusBar } from 'react-native';
 import { OrientationLock, lockAsync } from 'expo-screen-orientation';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -8,7 +10,10 @@ import { store } from './store';
 import { darkSystemColorScheme, lightSystemColorScheme, undefinedSystemColorScheme } from './store/theme';
 import { persistor } from './store';
 
-import * as Styles from './Styles/Styles';
+import { CalendarIcon, CheckmarkIcon, SettingsIcon } from './Pages/TabBarIcons';
+import { CalendarScreen } from './Pages/CalendarScreen';
+import { HomeScreen } from './Pages/HomeScreen';
+import { SettingsScreen } from './Pages/SettingsScreen';
 
 export default function App() {
     return (
@@ -19,6 +24,8 @@ export default function App() {
         </Provider>
     );
 }
+
+const Tab = createBottomTabNavigator();
 
 function AppComponent() {
     // Get the redux store dispatch
@@ -47,11 +54,36 @@ function AppComponent() {
     // Set the orientation lock for the application
     lockAsync(OrientationLock.PORTRAIT_UP);
 
-    const containerStyles = Styles.containerStyles(theme);
-
     return (
-        <SafeAreaView style={containerStyles.container}>
+        <NavigationContainer>
             <StatusBar backgroundColor={theme.colors.background} barStyle={theme.isDark ? 'light-content' : 'dark-content'} />
-        </SafeAreaView>
+            <Tab.Navigator
+                initialRouteName='Home'
+                screenOptions={({ route }) => ({
+                    // Header options
+                    headerShown: false,
+                    // Bottom tab options
+                    tabBarStyle: {
+                        backgroundColor: theme.colors.background,
+                        borderTopColor: theme.colors.borders,
+                        borderTopWidth: 1,
+                    },
+                    tabBarInactiveTintColor: theme.colors.secondary,
+                    tabBarActiveTintColor: theme.colors.accent,
+                    tabBarIcon: ({ color, size }) => {
+                        if (route.name === 'Calendar')
+                            return <CalendarIcon color={color} size={size} />;
+                        if (route.name === 'Home')
+                            return <CheckmarkIcon color={color} size={size} />;
+                        if (route.name === 'Settings')
+                            return <SettingsIcon color={color} size={size} />;
+                    },
+                })}
+            >
+                <Tab.Screen name="Calendar" component={CalendarScreen} />
+                <Tab.Screen name="Home" component={HomeScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+        </NavigationContainer>
     );
 }

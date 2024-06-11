@@ -29,3 +29,12 @@ export function textStyles(theme) {
         },
     });
 }
+
+export function scrollViewProps(theme) {
+    return {
+        indicatorStyle: theme.isDark ? 'white' : 'black',
+        style: {
+            width: '100%',
+        }
+    };
+}
