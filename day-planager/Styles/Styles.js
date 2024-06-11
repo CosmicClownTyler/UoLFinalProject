@@ -38,3 +38,27 @@ export function scrollViewProps(theme) {
         }
     };
 }
+
+export function tableSectionProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        headerTextColor: secondary,
+        footerTextColor: secondary,
+        separatorTintColor: borders,
+    };
+}
+
+export function tableCellProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        titleTextColor: primary,
+        subtitleColor: secondary,
+        backgroundColor: foreground,
+        highlightUnderlayColor: primary,
+        highlightActiveOpacity: 0.8,
+        accessoryColor: accent,
+        accessoryColorDisclosureIndicator: secondary,
+    };
+}

@@ -23,4 +23,34 @@ export class Colors {
         borders: '#cccccc',
         accent: '#0055ff',
     };
+
+    static accents = [
+        '#800000', // DarkRed
+        '#FF0000', // Red
+        '#FF8080', // LightRed
+        '#804000', // DarkOrange
+        '#FF8000', // Orange
+        '#FFBF80', // LightOrange
+        '#808000', // DarkYellow
+        '#FFFF00', // Yellow
+        '#FFFF80', // LightYellow
+        '#008000', // DarkGreen
+        '#00FF00', // Green
+        '#80FF80', // LightGreen
+        '#008080', // DarkAqua
+        '#00FFFF', // Aqua
+        '#80FFFF', // LightAqua
+        '#000080', // DarkBlue
+        '#0000FF', // Blue
+        '#8080FF', // LightBlue
+        '#400080', // DarkPurple
+        '#8000FF', // Purple
+        '#BF80FF', // LightPurple
+        '#800080', // DarkMagenta
+        '#FF00FF', // Magenta
+        '#FF80FF', // LightMagenta
+        '#800040', // DarkPink
+        '#FF0080', // Pink
+        '#FF80BF', // LightPink
+    ];
 }
