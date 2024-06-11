@@ -13,7 +13,7 @@ export function HomeScreen({ navigation, route }) {
 
     return (
         <SafeAreaView style={containerStyles.container}>
-            <ThemedHeader title="Home" />
+            <ThemedHeader title="Home" rightImage={require("../assets/icons/plus.png")} />
             <ScrollView {...scrollViewProps}>
 
             </ScrollView>
