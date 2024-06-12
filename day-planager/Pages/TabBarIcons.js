@@ -33,17 +33,6 @@ export function CheckmarkIcon({ color, size }) {
     />);
 }
 
-export function MenuIcon({ color, size }) {
-    return (<Image
-        tintColor={color}
-        source={require('../assets/icons/menu.png')}
-        style={{
-            width: size,
-            height: size,
-        }}
-    />);
-}
-
 export function HistoryIcon({ color, size }) {
     return (<Image
         tintColor={color}
