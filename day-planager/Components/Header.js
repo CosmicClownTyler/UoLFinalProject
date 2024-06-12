@@ -121,6 +121,7 @@ const headerStyles = StyleSheet.create({
     header: {
         width: '100%',
         flexDirection: 'row',
+        padding: 10,
         backgroundColor: '#000000',
         borderBottomWidth: 1,
         borderBottomColor: '#ffffff',
@@ -156,11 +157,9 @@ const headerStyles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#ffffff',
-        paddingVertical: 10,
     },
     headerImage: {
         height: 20,
-        marginRight: 10,
         aspectRatio: '1/1',
     },
 });

@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { automaticColorScheme, darkColorScheme, lightColorScheme, automaticAccentColor, customAccentColor, setThemeAccentColor } from '../store/theme';
 
 import * as Styles from '../Styles/Styles';
-import { ThemedHeader } from '../Components/Themed/ThemedHeader';
-import { ThemedColorPicker } from '../Components/Themed/ThemedColorPicker';
+import { Header } from '../Components/Header';
+import { ColorPicker } from '../Components/ColorPicker';
 
 export function SettingsScreen({ navigation, route }) {
     const Stack = createNativeStackNavigator();
@@ -38,13 +38,14 @@ function SettingsHomeScreen({ navigation, route }) {
     const settings = useSelector(state => state.settings);
     const theme = settings.theme;
     const containerStyles = Styles.containerStyles(theme);
+    const headerProps = Styles.headerProps(theme);
     const scrollViewProps = Styles.scrollViewProps(theme);
     const tableSectionProps = Styles.tableSectionProps(theme);
     const tableCellProps = Styles.tableCellProps(theme);
 
     return (
         <SafeAreaView style={containerStyles.container}>
-            <ThemedHeader title="Settings" />
+            <Header title="Settings" {...headerProps} />
             <ScrollView {...scrollViewProps}>
                 <TableView>
                     <Section header="General" {...tableSectionProps}>
@@ -82,13 +83,12 @@ function DateTimeScreen({ navigation, route }) {
     const settings = useSelector(state => state.settings);
     const theme = settings.theme;
     const containerStyles = Styles.containerStyles(theme);
+    const headerProps = Styles.headerProps(theme);
     const scrollViewProps = Styles.scrollViewProps(theme);
-    const tableSectionProps = Styles.tableSectionProps(theme);
-    const tableCellProps = Styles.tableCellProps(theme);
 
     return (
         <SafeAreaView style={containerStyles.container}>
-            <ThemedHeader title="Date & Time" left="Back" onLeft={navigation.goBack} />
+            <Header title="Date & Time" leftImage={require("../assets/icons/arrow-left.png")} onLeft={navigation.goBack} {...headerProps} />
             <ScrollView {...scrollViewProps}>
                 <TableView>
                 </TableView>
@@ -101,13 +101,12 @@ function NotificationsScreen({ navigation, route }) {
     const settings = useSelector(state => state.settings);
     const theme = settings.theme;
     const containerStyles = Styles.containerStyles(theme);
+    const headerProps = Styles.headerProps(theme);
     const scrollViewProps = Styles.scrollViewProps(theme);
-    const tableSectionProps = Styles.tableSectionProps(theme);
-    const tableCellProps = Styles.tableCellProps(theme);
 
     return (
         <SafeAreaView style={containerStyles.container}>
-            <ThemedHeader title="Notifications" left="Back" onLeft={navigation.goBack} />
+            <Header title="Notifications" leftImage={require("../assets/icons/arrow-left.png")} onLeft={navigation.goBack} {...headerProps} />
             <ScrollView {...scrollViewProps}>
                 <TableView>
                 </TableView>
@@ -120,6 +119,7 @@ function AppearanceScreen({ navigation, route }) {
     const settings = useSelector(state => state.settings);
     const theme = settings.theme;
     const containerStyles = Styles.containerStyles(theme);
+    const headerProps = Styles.headerProps(theme);
     const scrollViewProps = Styles.scrollViewProps(theme);
     const tableSectionProps = Styles.tableSectionProps(theme);
     const tableCellProps = Styles.tableCellProps(theme);
@@ -148,7 +148,7 @@ function AppearanceScreen({ navigation, route }) {
 
     return (
         <SafeAreaView style={containerStyles.container}>
-            <ThemedHeader title="Appearance" left="Back" onLeft={navigation.goBack} />
+            <Header title="Appearance" leftImage={require("../assets/icons/arrow-left.png")} onLeft={navigation.goBack} {...headerProps} />
             <ScrollView {...scrollViewProps}>
                 <TableView>
                     <Section header="Theme" {...tableSectionProps}>
@@ -192,7 +192,7 @@ function AppearanceScreen({ navigation, route }) {
                     </Section>
                 </TableView>
                 {theme.accentType == "custom" ?
-                    <ThemedColorPicker onChange={setAccentColor} /> : null}
+                    <ColorPicker onChange={setAccentColor} /> : null}
             </ScrollView>
         </SafeAreaView>
     );

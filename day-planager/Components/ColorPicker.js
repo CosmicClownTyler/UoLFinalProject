@@ -1,6 +1,6 @@
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
-import { Colors } from '../../Styles/Colors';
+import { Colors } from '../Styles/Colors';
 
 export function ColorPicker(props) {
     // Deconstruct props

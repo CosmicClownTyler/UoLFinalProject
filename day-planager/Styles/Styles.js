@@ -62,3 +62,59 @@ export function tableCellProps(theme) {
         accessoryColorDisclosureIndicator: secondary,
     };
 }
+
+export function colorPickerProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        style: {
+            backgroundColor: background,
+        },
+        buttonStyle: {
+            borderColor: borders,
+        },
+    };
+}
+
+export function headerProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        titleStyle: {
+            color: primary,
+        },
+        style: {
+            backgroundColor: background,
+            borderBottomWidth: 1,
+            borderBottomColor: borders,
+        },
+    };
+}
+
+export function checkboxProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        color: accent,
+        size: '75%',
+    };
+}
+
+export function taskProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        style: {
+            width: '90%',
+            backgroundColor: foreground,
+            borderColor: borders,
+        },
+        titleStyle: {
+            color: primary,
+        },
+        dateStyle: {
+            color: secondary,
+        },
+        checkboxProps: checkboxProps(theme),
+    };
+}
