@@ -105,7 +105,7 @@ export function taskProps(theme) {
 
     return {
         style: {
-            width: '90%',
+            width: '95%',
             backgroundColor: foreground,
             borderColor: borders,
         },
@@ -116,5 +116,23 @@ export function taskProps(theme) {
             color: secondary,
         },
         checkboxProps: checkboxProps(theme),
+    };
+}
+
+export function taskListProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        titleStyle: {
+            color: primary,
+        },
+        titleContainerStyle: {
+            width: '95%',
+            backgroundColor: background,
+            borderBottomWidth: 1,
+            borderBottomColor: borders,
+            marginBottom: 10,
+        },
+        taskProps: taskProps(theme),
     };
 }
