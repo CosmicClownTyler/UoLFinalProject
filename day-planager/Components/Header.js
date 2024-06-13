@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 export function Header(props) {
     // Deconstruct props
     const {
-        title, titleStyle, style,
+        title, titleStyle, imageStyle, style,
         leftText, leftImage, leftImageStyle, onLeft,
         rightText, rightImage, rightImageStyle, onRight,
     } = props;
@@ -29,9 +29,9 @@ export function Header(props) {
     if (leftImage) {
         leftImageComponent = (
             <Image
-                tintColor={leftImageStyle?.color}
+                tintColor={leftImageStyle?.color ? leftImageStyle.color : imageStyle?.color}
                 source={leftImage}
-                style={[headerStyles.headerImage, headerStyles.leftImage, leftImageStyle]}
+                style={[headerStyles.headerImage, headerStyles.leftImage, imageStyle, leftImageStyle]}
             />
         );
     }
@@ -45,9 +45,9 @@ export function Header(props) {
     if (rightImage) {
         rightImageComponent = (
             <Image
-                tintColor={rightImageStyle?.color}
+                tintColor={rightImageStyle?.color ? rightImageStyle.color : imageStyle?.color}
                 source={rightImage}
-                style={[headerStyles.headerImage, headerStyles.rightImage, rightImageStyle]}
+                style={[headerStyles.headerImage, headerStyles.rightImage, imageStyle, rightImageStyle]}
             />
         );
     }

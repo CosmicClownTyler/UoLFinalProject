@@ -88,6 +88,9 @@ export function headerProps(theme) {
             borderBottomWidth: 1,
             borderBottomColor: borders,
         },
+        imageStyle: {
+            color: primary,
+        },
     };
 }
 
