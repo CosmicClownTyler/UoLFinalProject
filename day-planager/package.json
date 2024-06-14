@@ -1,7 +1,7 @@
 {
     "name": "day-planager",
     "version": "1.0.0",
-    "main": "expo/AppEntry.js",
+    "main": "node_modules/expo/AppEntry.js",
     "scripts": {
         "start": "expo start",
         "android": "expo start --android",
@@ -14,9 +14,9 @@
         "@react-navigation/native": "^6.1.17",
         "@react-navigation/native-stack": "^6.9.26",
         "@reduxjs/toolkit": "^2.2.4",
-        "expo": "~51.0.13",
+        "expo": "~51.0.14",
         "expo-screen-orientation": "~7.0.5",
-        "expo-updates": "~0.25.15",
+        "expo-updates": "~0.25.17",
         "react": "18.2.0",
         "react-native": "0.74.2",
         "react-native-screens": "3.31.1",
