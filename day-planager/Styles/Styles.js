@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+// Consisten styles across common elements
 export function containerStyles(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -13,7 +14,6 @@ export function containerStyles(theme) {
         },
     });
 }
-
 export function textStyles(theme) {
     const { primary } = theme.colors;
 
@@ -30,6 +30,7 @@ export function textStyles(theme) {
     });
 }
 
+// Consistent props for react native components
 export function scrollViewProps(theme) {
     return {
         indicatorStyle: theme.isDark ? 'white' : 'black',
@@ -38,7 +39,6 @@ export function scrollViewProps(theme) {
         }
     };
 }
-
 export function tableSectionProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -48,7 +48,6 @@ export function tableSectionProps(theme) {
         separatorTintColor: borders,
     };
 }
-
 export function tableCellProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -63,6 +62,17 @@ export function tableCellProps(theme) {
     };
 }
 
+// Consistent props for custom components
+export function modalProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        style: {
+            backgroundColor: foreground,
+            borderColor: borders,
+        },
+    };
+}
 export function colorPickerProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -75,7 +85,6 @@ export function colorPickerProps(theme) {
         },
     };
 }
-
 export function headerProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -93,7 +102,6 @@ export function headerProps(theme) {
         },
     };
 }
-
 export function checkboxProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -102,7 +110,6 @@ export function checkboxProps(theme) {
         size: '75%',
     };
 }
-
 export function taskProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
@@ -112,7 +119,7 @@ export function taskProps(theme) {
             backgroundColor: foreground,
             borderColor: borders,
         },
-        titleStyle: {
+        nameStyle: {
             color: primary,
         },
         dateStyle: {
@@ -121,21 +128,31 @@ export function taskProps(theme) {
         checkboxProps: checkboxProps(theme),
     };
 }
-
-export function taskListProps(theme) {
+export function taskGroupProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
     return {
+        style: {
+            backgroundColor: background,
+        },
         titleStyle: {
             color: primary,
         },
         titleContainerStyle: {
             width: '95%',
-            backgroundColor: background,
             borderBottomWidth: 1,
             borderBottomColor: borders,
-            marginBottom: 10,
+        },
+        collapseStyle: {
+            color: secondary,
         },
         taskProps: taskProps(theme),
+    };
+}
+export function taskModalProps(theme) {
+    const { background, primary, secondary, foreground, borders, accent } = theme.colors;
+
+    return {
+        ...modalProps(theme),
     };
 }

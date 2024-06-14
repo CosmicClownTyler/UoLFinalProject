@@ -1,11 +1,16 @@
-import { StyleSheet, View, TouchableOpacity, Image, Text, TextInput } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image, TextInput } from 'react-native';
 
 import { Modal } from './Modal';
 import { useState } from 'react';
 
+import { addTask } from '../store/tasks';
+import { useDispatch } from 'react-redux';
+
 export function AddTaskModal(props) {
     // Deconstruct props
-    const { shown, style, onClose, onAddTask } = props;
+    const { shown, style, onClose } = props;
+
+    const dispatch = useDispatch();
 
     const [taskName, setTaskName] = useState("");
 
@@ -13,7 +18,7 @@ export function AddTaskModal(props) {
         onClose();
     };
 
-    const addTask = () => {
+    const onAddTask = () => {
         onModalClose();
 
         if (!verifyTaskName(taskName)) {
@@ -26,7 +31,7 @@ export function AddTaskModal(props) {
             name: taskName,
         };
 
-        onAddTask(task);
+        dispatch(addTask(task));
     };
 
     const verifyTaskName = (name) => {
@@ -42,9 +47,9 @@ export function AddTaskModal(props) {
                     onChangeText={setTaskName}
                     autoFocus={true}
                     style={[taskModalStyles.text, taskModalStyles.textInput]}
-                    onSubmitEditing={addTask}
+                    onSubmitEditing={onAddTask}
                 />
-                <TouchableOpacity style={taskModalStyles.button} onPress={addTask}>
+                <TouchableOpacity style={taskModalStyles.button} onPress={onAddTask}>
                     <Image
                         tintColor={'#ffffff'}
                         source={require("../assets/icons/plus.png")}

@@ -1,31 +1,32 @@
-import { useState } from 'react';
-
 import { StyleSheet, View, Text } from 'react-native';
+
 import { Checkbox } from './Checkbox';
+
+import { toggleTaskCompleted } from '../store/tasks';
+import { useDispatch } from 'react-redux';
 
 export function Task(props) {
     // Deconstruct props
     const {
-        title, titleStyle,
-        date, dateStyle,
+        task,
         checkboxProps,
-        style,
+        nameStyle, dateStyle, style,
     } = props;
 
-    const [completed, setCompleted] = useState(false);
+    const dispatch = useDispatch();
 
     return (
         <View style={[taskStyles.container, style]}>
             <View style={taskStyles.textContainer}>
-                <Text style={[taskStyles.text, taskStyles.titleText, titleStyle]}>
-                    {title}
+                <Text style={[taskStyles.text, taskStyles.titleText, nameStyle]}>
+                    {task.name}
                 </Text>
                 <Text style={[taskStyles.text, taskStyles.dateText, dateStyle]}>
-                    {date}
+                    {task.date}
                 </Text>
             </View>
             <View style={[taskStyles.checkboxContainer]}>
-                <Checkbox onToggle={() => { setCompleted(!completed); }} checked={completed} {...checkboxProps} />
+                <Checkbox onToggle={() => { dispatch(toggleTaskCompleted(task)); }} checked={task.completed} {...checkboxProps} />
             </View>
         </View>
     );
@@ -56,9 +57,6 @@ const taskStyles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'left',
         color: '#ffffff',
-    },
-    titleText: {
-        fontWeight: 'bold',
     },
     dateText: {
 
