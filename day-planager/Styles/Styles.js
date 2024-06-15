@@ -70,6 +70,7 @@ export function modalProps(theme) {
         style: {
             backgroundColor: foreground,
             borderColor: borders,
+            color: primary,
         },
     };
 }
@@ -153,6 +154,10 @@ export function taskModalProps(theme) {
     const { background, primary, secondary, foreground, borders, accent } = theme.colors;
 
     return {
+        textInputStyle: {
+            color: primary,
+        },
+        placeholderTextColor: secondary,
         ...modalProps(theme),
     };
 }

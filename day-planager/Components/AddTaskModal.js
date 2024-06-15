@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 export function AddTaskModal(props) {
     // Deconstruct props
-    const { shown, style, onClose } = props;
+    const { shown, style, onClose, textInputStyle, placeholderTextColor } = props;
 
     const dispatch = useDispatch();
 
@@ -43,15 +43,16 @@ export function AddTaskModal(props) {
             <View style={taskModalStyles.row}>
                 <TextInput
                     placeholder='Your task here...'
+                    placeholderTextColor={placeholderTextColor}
                     value={taskName}
                     onChangeText={setTaskName}
                     autoFocus={true}
-                    style={[taskModalStyles.text, taskModalStyles.textInput]}
+                    style={[taskModalStyles.text, taskModalStyles.textInput, textInputStyle]}
                     onSubmitEditing={onAddTask}
                 />
                 <TouchableOpacity style={taskModalStyles.button} onPress={onAddTask}>
                     <Image
-                        tintColor={'#ffffff'}
+                        tintColor={style.color}
                         source={require("../assets/icons/plus.png")}
                         style={taskModalStyles.image}
                     />
