@@ -1,15 +1,16 @@
 import { useState } from 'react';
 
-import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
+import { StyleSheet, View, Pressable, Image, Text } from 'react-native';
 
 import { Task } from './Task';
 
 export function TaskGroup(props) {
     // Deconstruct props
     const {
-        title, titleStyle, titleContainerStyle, collapseStyle,
+        title, titleStyle, headerStyleStyle, collapseStyle,
         tasks,
         taskProps,
+        editing,
         style,
     } = props;
 
@@ -17,18 +18,20 @@ export function TaskGroup(props) {
 
     return (
         <View style={[taskGroupStyles.container, style]}>
-            <View style={[taskGroupStyles.titleContainer, titleContainerStyle]}>
-                <Text style={[taskGroupStyles.title, titleStyle]}>
-                    {title}
-                </Text>
-                <TouchableOpacity onPress={() => { setCollapsed(!collapsed); }} style={taskGroupStyles.collapseContainer}>
-                    <Image
-                        tintColor={collapseStyle?.color}
-                        source={collapsed ? require("../assets/icons/arrow-up.png") : require("../assets/icons/arrow-down.png")}
-                        style={[taskGroupStyles.collapse, collapseStyle]}
-                    />
-                </TouchableOpacity>
-            </View>
+            <Pressable onPress={() => { setCollapsed(!collapsed); }}>
+                <View style={[taskGroupStyles.headerStyle, headerStyleStyle]}>
+                    <Text style={[taskGroupStyles.title, titleStyle]}>
+                        {title}
+                    </Text>
+                    <View style={taskGroupStyles.collapseContainer}>
+                        <Image
+                            tintColor={collapseStyle?.color}
+                            source={collapsed ? require("../assets/icons/arrow-up.png") : require("../assets/icons/arrow-down.png")}
+                            style={[taskGroupStyles.collapse, collapseStyle]}
+                        />
+                    </View>
+                </View>
+            </Pressable>
             {!collapsed &&
                 tasks.map((task, index) => {
 
@@ -44,6 +47,7 @@ export function TaskGroup(props) {
                     return (
                         <Task
                             task={task}
+                            editing={editing}
                             key={index}
                             {...taskProps}
                             style={styles}
@@ -63,7 +67,7 @@ const taskGroupStyles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#000000',
     },
-    titleContainer: {
+    headerStyle: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',

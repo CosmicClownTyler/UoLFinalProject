@@ -1,14 +1,15 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import { Checkbox } from './Checkbox';
 
-import { toggleTaskCompleted } from '../store/tasks';
+import { toggleTaskCompleted, deleteTask } from '../store/tasks';
 import { useDispatch } from 'react-redux';
 
 export function Task(props) {
     // Deconstruct props
     const {
         task,
+        editing,
         checkboxProps,
         nameStyle, dateStyle, style,
     } = props;
@@ -17,17 +18,23 @@ export function Task(props) {
 
     return (
         <View style={[taskStyles.container, style]}>
-            <View style={taskStyles.textContainer}>
+            <View style={taskStyles.leftContainer}>
+                <Checkbox onToggle={() => { dispatch(toggleTaskCompleted(task)); }} checked={task.completed} {...checkboxProps} />
                 <Text style={[taskStyles.text, taskStyles.titleText, nameStyle]}>
                     {task.name}
                 </Text>
+            </View>
+            {editing ?
+                <TouchableOpacity onPress={() => { dispatch(deleteTask(task)); }}>
+                    <Text style={[taskStyles.text, dateStyle, taskStyles.deleteText]}>
+                        Delete
+                    </Text>
+                </TouchableOpacity>
+                :
                 <Text style={[taskStyles.text, taskStyles.dateText, dateStyle]}>
                     {task.date}
                 </Text>
-            </View>
-            <View style={[taskStyles.checkboxContainer]}>
-                <Checkbox onToggle={() => { dispatch(toggleTaskCompleted(task)); }} checked={task.completed} {...checkboxProps} />
-            </View>
+            }
         </View>
     );
 }
@@ -39,11 +46,19 @@ const taskStyles = StyleSheet.create({
         padding: 5,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
+        justifyContent: 'space-between',
         backgroundColor: '#000000',
         borderWidth: 1,
         borderColor: '#ffffff',
         borderRadius: 5,
+    },
+    leftContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+    },
+    rightContainer: {
+
     },
     checkboxContainer: {
         flexGrow: 0,
@@ -60,5 +75,8 @@ const taskStyles = StyleSheet.create({
     },
     dateText: {
 
+    },
+    deleteText: {
+        color: '#ff0000',
     },
 });

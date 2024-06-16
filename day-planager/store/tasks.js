@@ -20,16 +20,26 @@ export const tasksSlice = createSlice({
             const name = action.payload.name;
             const date = action.payload.date;
             const completed = action.payload.completed;
-            
+
             // 
             const newTask = taskFactory(id, name, date, completed);
 
             // 
             state.tasks.push(newTask);
         },
+        deleteTask(state, action) {
+            const foundIndex = state.tasks.findIndex((task) => task.id == action.payload.id);
+
+            if (foundIndex == -1) return;
+
+            state.tasks.splice(foundIndex, 1);
+        },
         toggleTaskCompleted(state, action) {
-            const foundTask = state.tasks.filter((task) => task.id == action.payload.id)[0];
-            foundTask.completed = !foundTask.completed;
+            const foundIndex = state.tasks.findIndex((task) => task.id == action.payload.id);
+
+            if (foundIndex == -1) return;
+
+            state.tasks[foundIndex].completed = !state.tasks[foundIndex].completed;
         }
     },
 });
@@ -43,7 +53,7 @@ const tasksConfig = {
 export const tasksReducer = persistReducer(tasksConfig, tasksSlice.reducer);
 
 export const {
-    addTask, toggleTaskCompleted,
+    addTask, deleteTask, toggleTaskCompleted,
 } = tasksSlice.actions;
 
 

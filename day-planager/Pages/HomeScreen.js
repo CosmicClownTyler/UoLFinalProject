@@ -25,13 +25,23 @@ export function HomeScreen({ navigation, route }) {
 
     // Whether the modal is shown for adding tasks
     const [addTaskModalShown, setAddTaskModalShown] = useState(false);
+    // Whether the user is currently editing the shown tasks
+    const [editingTasks, setEditingTasks] = useState(false);
+    const toggleEditingTasks = () => setEditingTasks(!editingTasks);
 
     return (
         <View style={{ width: '100%', height: '100%' }}>
             <SafeAreaView style={containerStyles.container}>
-                <Header title="Home" rightImage={require("../assets/icons/plus.png")} onRight={() => setAddTaskModalShown(true)} {...headerProps} />
+                <Header
+                    title="Home"
+                    rightImage={require("../assets/icons/plus.png")}
+                    onRight={() => setAddTaskModalShown(true)}
+                    leftText={editingTasks ? "Done" : "Edit"}
+                    onLeft={toggleEditingTasks}
+                    {...headerProps}
+                />
                 <ScrollView {...scrollViewProps}>
-                    <TaskGroup tasks={tasks.tasks} title="Unsorted" {...taskGroupProps} />
+                    <TaskGroup tasks={tasks.tasks} title="Unsorted" editing={editingTasks} {...taskGroupProps} />
                 </ScrollView>
             </SafeAreaView>
             <AddTaskModal {...taskModalProps} onClose={() => setAddTaskModalShown(false)} shown={addTaskModalShown} />

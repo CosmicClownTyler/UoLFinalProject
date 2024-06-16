@@ -139,7 +139,7 @@ export function taskGroupProps(theme) {
         titleStyle: {
             color: primary,
         },
-        titleContainerStyle: {
+        headerStyleStyle: {
             width: '95%',
             borderBottomWidth: 1,
             borderBottomColor: borders,
